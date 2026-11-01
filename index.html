@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chumash with Rashi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;700&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#eef1f4;--surface:#fff;--ink:#18202b;--muted:#5d6876;--line:#d8dee6;
+  --accent:#1d3d6e;--accent-soft:#e3eaf5;
+  --f-heb:"Frank Ruhl Libre","Times New Roman",serif;
+  --f-ui:"Instrument Sans",system-ui,sans-serif;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#11161d;--surface:#1a212b;--ink:#e6eaf0;--muted:#97a3b3;--line:#2c3644;
+  --accent:#8fb0e6;--accent-soft:#223149;color-scheme:dark}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);min-height:100dvh;
+  display:flex;align-items:center;justify-content:center;padding:32px 20px}
+.wrap{max-width:480px;width:100%;text-align:center}
+h1{font-family:var(--f-heb);font-size:clamp(28px,5vw,36px);font-weight:700;margin-bottom:6px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:36px}
+.lessons{display:flex;flex-direction:column;gap:12px}
+a{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:18px 22px;transition:border-color .15s,box-shadow .15s}
+a:hover{border-color:var(--accent);box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.heb{font-family:var(--f-heb);font-size:22px;font-weight:700;line-height:1}
+.meta{text-align:left}
+.en{font-weight:600;font-size:16px}
+.desc{font-size:13px;color:var(--muted);margin-top:2px}
+.arrow{margin-inline-start:auto;color:var(--muted);font-size:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>חומש עם רש״י</h1>
+  <p class="sub">Interactive Rashi Study</p>
+  <div class="lessons">
+    <a href="Rashi-Lech-Lecha.html">
+      <span class="heb">לך לך</span>
+      <span class="meta">
+        <span class="en">Lech Lecha</span>
+        <span class="desc">Bereishis 12:1 – 17:27</span>
+      </span>
+      <span class="arrow">&rsaquo;</span>
+    </a>
+    <a href="Rashi-Vayera.html">
+      <span class="heb">וירא</span>
+      <span class="meta">
+        <span class="en">Vayera</span>
+        <span class="desc">Bereishis 18:1 – 22:24</span>
+      </span>
+      <span class="arrow">&rsaquo;</span>
+    </a>
+  </div>
+</div>
+</body>
+</html>
