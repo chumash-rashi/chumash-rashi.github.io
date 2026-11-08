@@ -111,11 +111,13 @@ header .top,.tools,.ref,.dh{display:none}
 .q{font-size:calc(var(--s,1)*18px)}
 .opt{font-size:calc(var(--s,1)*17px);padding:calc(var(--s,1)*7px) calc(var(--s,1)*10px)}
 .opt .k{width:calc(var(--s,1)*20px);height:calc(var(--s,1)*20px);font-size:calc(var(--s,1)*11px)}
-.row p{font-size:15px}
-.verdict{font-size:15px}
+.row p{font-size:25px;line-height:1.35}
+.verdict{font-size:26px;font-weight:700}
+.row .t{font-size:16px}
 .point{gap:calc(var(--s,1)*10px)}
-.reveal{gap:4px}
-.reveal[aria-hidden]{max-height:50px;overflow:hidden}
+.card{position:relative}
+.reveal{position:absolute;inset-inline:12px;bottom:56px;z-index:3;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px;box-shadow:0 -6px 18px rgba(0,0,0,.25)}
+.reveal[aria-hidden]{box-shadow:none;border-color:transparent}
 .nav .btn{padding:4px 12px;font-size:13px}
 @media (max-width:460px){.pasuk{font-size:calc(var(--s,1)*22px)}}
 .hint{font-size:11px;display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center}
@@ -242,7 +244,9 @@ function foot(){const h=document.querySelector('.hint');const x=DATA[st.i];
 function fit(){const c=document.querySelector('.card');if(!c)return;const r=document.documentElement;
   let lo=.6,hi=6;for(let i=0;i<9;i++){const m=(lo+hi)/2;r.style.setProperty('--s',m);if(c.scrollHeight>c.clientHeight)hi=m;else lo=m}
   r.style.setProperty('--s',lo)}
-const _render=render;render=function(){_render();foot();fit()};
+function placeReveal(){const c=document.querySelector('.card'),r=c&&c.querySelector('.reveal'),n=c&&c.querySelector('.nav');if(r&&n)r.style.bottom=(c.clientHeight-n.offsetTop+6)+'px'}
+const _render=render;render=function(){_render();foot();fit();placeReveal()};
+addEventListener('resize',placeReveal);
 addEventListener('resize',fit);if(document.fonts)document.fonts.ready.then(fit);
 render();
 </script>
