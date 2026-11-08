@@ -101,6 +101,9 @@ summary{cursor:pointer;color:var(--muted);font-size:14px}
 
 /* taamim: Frank Ruhl lacks cantillation glyphs, so those letters fell back to another font */
 .pasuk{font-family:"Noto Serif Hebrew",var(--f-heb)}
+/* pasuk panel: visually separate the verse from the question */
+.pasuk{background:var(--accent-soft);border-inline-start:5px solid var(--accent);border-radius:10px;padding:calc(var(--s,1)*6px) calc(var(--s,1)*12px)}
+.point{border-top:1px solid var(--line);padding-top:calc(var(--s,1)*8px)}
 /* fit layout: only pasuk + question + options in the card; fine print lives in the footer */
 .wrap{max-width:min(1100px,100%)}
 header .top,.tools,.ref,.dh{display:none}
