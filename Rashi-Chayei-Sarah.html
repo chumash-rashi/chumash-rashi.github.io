@@ -11,7 +11,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Noto+Rashi+Hebrew:wght@400;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@400;600&family=Frank+Ruhl+Libre:wght@400;500;700&family=Noto+Rashi+Hebrew:wght@400;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Instrument+Sans:wght@400;500;600&display=swap">
 <style>
 /* Layout: one narrow study column; a single card per Rashi, posuk on top, question below, reveal under it. */
 :root{
@@ -99,6 +99,8 @@ summary{cursor:pointer;color:var(--muted);font-size:14px}
 .done p{margin:0;font-family:var(--f-body)}
 @media (prefers-reduced-motion:reduce){.bar i{transition:none}}
 
+/* taamim: Frank Ruhl lacks cantillation glyphs, so those letters fell back to another font */
+.pasuk{font-family:"Noto Serif Hebrew",var(--f-heb)}
 /* fit layout: only pasuk + question + options in the card; fine print lives in the footer */
 .wrap{max-width:min(1100px,100%)}
 header .top,.tools,.ref,.dh{display:none}
