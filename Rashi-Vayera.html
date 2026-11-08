@@ -177,7 +177,7 @@ function pointHTML(x,j){const v=picked(x,j);const ord=order(x.id+'#'+j);const mu
     <p class="q">${heWrap(pt.q)}</p>
     <div class="opts">${ord.map((o,k)=>{let c='';if(v!==undefined){c=o===0?'נכון':(o===v?'wrong':'dim')}
       return `<button class="opt ${c}" type="button" data-j="${j}" data-o="${o}" ${v!==undefined?'disabled':''}><span class="k">${k+1}</span><span>${heWrap(pt.options[o])}</span></button>`}).join('')}</div>
-    ${v!==undefined?`<div class="reveal">
+    ${(v!==undefined||j===nDone(x))?`<div class="reveal"${v===undefined?' style="visibility:hidden" aria-hidden="true"':''}>
       <div class="verdict ${v===0?'ok':'no'}">${v===0?'נכון.':'לא בדיוק.'}</div>
       ${pt.kasha?`<div class="row"><span class="t">מה מקשה רש״י</span><p>${heWrap(pt.kasha)}</p></div>`:''}
       <div class="row"><span class="t">רש״י אומר</span><p>${heWrap(pt.answer)}</p></div></div>`:''}
@@ -211,7 +211,7 @@ function render(){
       <div class="he" lang="he"><b>${esc(x.dh)}</b> ${x.rashi_he}</div>
       <div class="en">${x.rashi_en}</div>
       <div class="src">Text: Sefaria (Hebrew); translation: Metsudah רש״י Chumash</div>
-    </div></details>`:''}
+    </div></details>`:'<details style="visibility:hidden" aria-hidden="true"><summary>הצג את לשון רש״י</summary></details>'}
     <div class="nav"><button class="btn sec" id="back" type="button" ${st.i===0?'disabled':''}>חזור →</button><button class="btn" id="next" type="button" ${all?'':'disabled'}>${all?'רש״י הבא ←':'ענה כדי להמשיך'}</button></div>
   </section>`;
   m.querySelectorAll('.opt:not([disabled])').forEach(b=>b.onclick=()=>pick(+b.dataset.j,+b.dataset.o));
@@ -220,7 +220,7 @@ function render(){
 function pick(j,o){const x=DATA[st.i];if(picked(x,j)!==undefined)return;st.p[P(x,j)]=o;save();render();
   const v=document.querySelector('.verdict');if(v)v.scrollIntoView({behavior:'smooth',block:'center'});
   clearTimeout(window._aa);
-  const done=rashiDone(x);const delay=o===0?3000:6000;
+  const done=rashiDone(x);const delay=o===0?2000:6000;
   window._aa=setTimeout(()=>{if(done)go(st.i+1);else{const nx=document.getElementById('pt'+(j+1));if(nx)nx.scrollIntoView({behavior:'smooth',block:'center'})}},delay)}
 $('nextUnanswered').onclick=()=>{let k=DATA.findIndex((x,k)=>k>st.i&&!rashiDone(x));if(k<0)k=DATA.findIndex(x=>!rashiDone(x));go(k<0?DATA.length:k)};
 function askReset(){const z=$('resetZone');z.innerHTML='<span class="confirm">למחוק התקדמות? <button class="ghost" id="yes" type="button">כן, התחל מחדש</button><button class="ghost" id="no" type="button">ביטול</button></span>';
