@@ -224,7 +224,7 @@ function render(){
 function pick(j,o){const x=DATA[st.i];if(picked(x,j)!==undefined)return;st.p[P(x,j)]=o;save();curPt=j;render();
   clearTimeout(window._aa);
   const done=rashiDone(x);const hasNext=j+1<x.points.length&&!picked(x,j+1);
-  const delay=o===0?2000:6000;
+  const delay=o===0?1400:4200;
   window._aa=setTimeout(()=>{if(done)go(st.i+1);else{curPt=null;render()}},delay)}
 $('nextUnanswered').onclick=()=>{let k=DATA.findIndex((x,k)=>k>st.i&&!rashiDone(x));if(k<0)k=DATA.findIndex(x=>!rashiDone(x));go(k<0?DATA.length:k)};
 function askReset(){const z=$('resetZone');z.innerHTML='<span class="confirm">למחוק התקדמות? <button class="ghost" id="yes" type="button">כן, התחל מחדש</button><button class="ghost" id="no" type="button">ביטול</button></span>';
