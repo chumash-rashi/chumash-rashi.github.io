@@ -131,7 +131,7 @@ header .top,.tools,.ref,.dh{display:none}
 .card>.point{position:relative;grid-column:2;grid-row:1;min-height:0;overflow:hidden;border-top:0;padding-top:0;display:flex;flex-direction:column;justify-content:center;gap:calc(var(--s,1)*12px)}
 .card>details{grid-column:1/-1;grid-row:2}
 .card>.nav{grid-column:1/-1;grid-row:3}
-.reveal{position:absolute;inset:auto 0 0 0;z-index:3;max-height:68%;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;gap:6px;box-shadow:0 -8px 24px rgba(0,0,0,.3)}
+.reveal{position:absolute;inset:auto 0 0 0;z-index:3;max-height:none;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;gap:6px;box-shadow:0 -8px 24px rgba(0,0,0,.3)}
 .reveal[aria-hidden]{box-shadow:none;border-color:transparent}
 .row p{font-size:24px;line-height:1.4}
 .verdict{font-size:28px;font-weight:700}
@@ -266,7 +266,9 @@ function fit(){const c=document.querySelector('.card');if(!c)return;const r=docu
     bs(v=>r.style.setProperty('--sp',v),()=>p.scrollHeight>p.clientHeight+1,.5,3.2);
     bs(v=>r.style.setProperty('--s',v),()=>pt.scrollHeight>pt.clientHeight+1,.5,2.4)}
   else bs(v=>r.style.setProperty('--s',v),()=>c.scrollHeight>c.clientHeight+1,.6,6)}
-function placeReveal(){const c=document.querySelector('.card'),r=c&&c.querySelector('.reveal'),n=c&&c.querySelector('.nav');if(r&&n)r.style.bottom=(c.clientHeight-n.offsetTop+6)+'px'}
+function placeReveal(){const c=document.querySelector('.card'),r=c&&c.querySelector('.reveal'),n=c&&c.querySelector('.nav'),o=c&&c.querySelector('.opts');if(!r)return;
+  if(matchMedia('(min-width:900px)').matches){r.style.bottom='0';r.style.top=(o?o.offsetTop:0)+'px'}
+  else{r.style.top='';if(n)r.style.bottom=(c.clientHeight-n.offsetTop+6)+'px'}}
 const _render=render;render=function(){_render();foot();fit();placeReveal()};
 addEventListener('resize',placeReveal);
 addEventListener('resize',fit);if(document.fonts)document.fonts.ready.then(fit);
