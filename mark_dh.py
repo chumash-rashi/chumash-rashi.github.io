@@ -41,10 +41,13 @@ def _sim(a, b):
 def _find(tokens, dh_toks):
     """Best (start, end) token window for dh_toks, or None."""
     want = [_skel(t) for t in dh_toks]
+    full = [''.join(LETTERS.findall(t)) for t in dh_toks]
     n = len(want)
     best, best_score = None, 0.0
     for s in range(len(tokens) - n + 1):
         sc = sum(_sim(tokens[s + k][2], want[k]) for k in range(n)) / n
+        # tie-break: prefer the occurrence spelled exactly like the dh (e.g. אלי vs אל־)
+        sc += 0.01 * sum(tokens[s + k][3] == full[k] for k in range(n)) / n
         if sc > best_score:
             best, best_score = (s, s + n - 1), sc
     return best if best_score >= 0.8 else None
@@ -53,7 +56,7 @@ def _find(tokens, dh_toks):
 def mark_dh(pasuk_html, dh):
     """Return pasuk_html with the dh wrapped in <mark>; unchanged-but-unmarked if no match."""
     html = pasuk_html.replace('<mark>', '').replace('</mark>', '')
-    tokens = [(m.start(), m.end(), _skel(m.group())) for m in WORD.finditer(html) if LETTERS.search(m.group())]
+    tokens = [(m.start(), m.end(), _skel(m.group()), ''.join(LETTERS.findall(m.group()))) for m in WORD.finditer(html) if LETTERS.search(m.group())]
     spans = []
     for seg in _dh_segments(dh):
         r = _find(tokens, seg)
