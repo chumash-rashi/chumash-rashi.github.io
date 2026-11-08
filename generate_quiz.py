@@ -12,6 +12,7 @@ import json
 import re
 import time
 from pathlib import Path
+from mark_dh import mark_dh
 from functools import partial
 
 print = partial(print, flush=True)
@@ -121,17 +122,7 @@ def build_data_array(source_data: dict, quiz_results: list) -> list:
 
             dh = quiz.get("dh", extract_dh(rashi["he"]))
             # Build pasuk_html with <mark> around dh
-            pasuk_html = entry["he"]
-            dh_clean = re.sub(r'[\u0591-\u05C7]', '', dh)
-            pasuk_clean = re.sub(r'[\u0591-\u05C7]', '', pasuk_html)
-            start = pasuk_clean.find(dh_clean)
-            if start >= 0:
-                # Map back to real positions
-                real_start = _cons_to_real(pasuk_html, start)
-                real_end = _cons_to_real(pasuk_html, start + len(dh_clean))
-                pasuk_html = (pasuk_html[:real_start] + "<mark>" +
-                             pasuk_html[real_start:real_end] + "</mark>" +
-                             pasuk_html[real_end:])
+            pasuk_html = mark_dh(entry["he"], dh)
 
             item = {
                 "id": rid,
