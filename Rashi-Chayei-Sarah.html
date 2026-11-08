@@ -122,6 +122,23 @@ header .top,.tools,.ref,.dh{display:none}
 .nav .btn{padding:4px 12px;font-size:13px}
 @media (max-width:460px){.pasuk{font-size:calc(var(--s,1)*22px)}}
 .hint{font-size:11px;display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center}
+
+/* wide screens: split layout (pasuk | question+answers), fonts auto-fit each side */
+@media (min-width:900px){
+.wrap{max-width:min(1800px,100%)}
+.card{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);grid-template-rows:minmax(0,1fr) auto auto;column-gap:22px;row-gap:8px;overflow:hidden}
+.card>.pasuk{grid-column:1;grid-row:1;overflow:hidden;align-self:stretch;font-size:calc(var(--sp,1)*22px);padding:calc(var(--sp,1)*10px) calc(var(--sp,1)*14px)}
+.card>.point{grid-column:2;grid-row:1;min-height:0;overflow:hidden;border-top:0;padding-top:0;display:flex;flex-direction:column;justify-content:center;gap:calc(var(--s,1)*12px)}
+.card>details{grid-column:1/-1;grid-row:2}
+.card>.nav{grid-column:1/-1;grid-row:3}
+.reveal{position:static;box-shadow:none;border:0;border-top:1px solid var(--line);border-radius:0;background:none;padding:calc(var(--s,1)*6px) 0 0;gap:calc(var(--s,1)*4px)}
+.reveal[aria-hidden]{border-top-color:transparent}
+.row p{font-size:calc(var(--s,1)*17px);line-height:1.4}
+.verdict{font-size:calc(var(--s,1)*19px)}
+.row .t{font-size:calc(var(--s,1)*12px)}
+.q{font-size:calc(var(--s,1)*21px)}
+.opt{font-size:calc(var(--s,1)*21px)}
+}
 </style>
 
 <div class="wrap">
@@ -244,8 +261,11 @@ function foot(){const h=document.querySelector('.hint');const x=DATA[st.i];
   const on=DATA.filter(y=>y.ch===x.ch&&y.v===x.v).length;
   h.innerHTML='<span>בראשית '+x.ch+':'+x.v+' · '+gem(x.ch)+':'+gem(x.v)+'</span><span>רש״י '+x.n+' מתוך '+on+' על פסוק זה · #'+(st.i+1)+'</span><span>'+esc(c)+'</span><span>מקשים: 1-3 לתשובה · Enter להבא · ← / → לניווט</span>'}
 function fit(){const c=document.querySelector('.card');if(!c)return;const r=document.documentElement;
-  let lo=.6,hi=6;for(let i=0;i<9;i++){const m=(lo+hi)/2;r.style.setProperty('--s',m);if(c.scrollHeight>c.clientHeight)hi=m;else lo=m}
-  r.style.setProperty('--s',lo)}
+  const bs=(set,over,lo,hi)=>{for(let i=0;i<10;i++){const m=(lo+hi)/2;set(m);if(over())hi=m;else lo=m}set(lo)};
+  if(matchMedia('(min-width:900px)').matches){const p=c.querySelector('.pasuk'),pt=c.querySelector('.point');
+    bs(v=>r.style.setProperty('--sp',v),()=>p.scrollHeight>p.clientHeight+1,.5,3.2);
+    bs(v=>r.style.setProperty('--s',v),()=>pt.scrollHeight>pt.clientHeight+1,.5,8)}
+  else bs(v=>r.style.setProperty('--s',v),()=>c.scrollHeight>c.clientHeight+1,.6,6)}
 function placeReveal(){const c=document.querySelector('.card'),r=c&&c.querySelector('.reveal'),n=c&&c.querySelector('.nav');if(r&&n)r.style.bottom=(c.clientHeight-n.offsetTop+6)+'px'}
 const _render=render;render=function(){_render();foot();fit();placeReveal()};
 addEventListener('resize',placeReveal);
