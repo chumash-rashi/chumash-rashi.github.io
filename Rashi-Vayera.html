@@ -132,8 +132,8 @@ header .top,.tools,.ref,.dh{display:none}
 .card>.nav{grid-column:1/-1;grid-row:3}
 .reveal{position:absolute;inset:auto 0 0 0;z-index:3;max-height:none;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;gap:6px;box-shadow:0 -8px 24px rgba(0,0,0,.3)}
 .reveal[aria-hidden]{box-shadow:none;border-color:transparent}
-.row p{font-size:24px;line-height:1.4}
-.verdict{font-size:28px;font-weight:700}
+.row p{font-size:20px;line-height:1.35}
+.verdict{font-size:22px;font-weight:700}
 .row .t{font-size:16px}
 .q{font-size:calc(var(--s,1)*21px)}
 .opt{font-size:calc(var(--s,1)*21px)}
@@ -263,11 +263,11 @@ function fit(){const c=document.querySelector('.card');if(!c)return;const r=docu
   const bs=(set,over,lo,hi)=>{for(let i=0;i<10;i++){const m=(lo+hi)/2;set(m);if(over())hi=m;else lo=m}set(lo)};
   if(matchMedia('(min-width:900px)').matches){const p=c.querySelector('.pasuk'),pt=c.querySelector('.point');
     bs(v=>r.style.setProperty('--sp',v),()=>p.scrollHeight>p.clientHeight+1,.5,3.2);
-    bs(v=>r.style.setProperty('--s',v),()=>pt.scrollHeight>pt.clientHeight*(shown?.5:1)+1,.5,2.4)}
+    bs(v=>r.style.setProperty('--s',v),()=>pt.scrollHeight>pt.clientHeight*(shown?.58:1)+1,.5,2.4)}
   else bs(v=>r.style.setProperty('--s',v),()=>c.scrollHeight>c.clientHeight+1,.6,6);
   if(rv)rv.style.display=''}
 function placeReveal(){const c=document.querySelector('.card'),r=c&&c.querySelector('.reveal'),n=c&&c.querySelector('.nav'),o=c&&c.querySelector('.opts');if(!r)return;
-  if(matchMedia('(min-width:900px)').matches){r.style.bottom='0';r.style.top=(o?o.offsetTop+o.offsetHeight+8:0)+'px';r.style.overflow='auto'}
+  if(matchMedia('(min-width:900px)').matches){r.style.bottom='0';r.style.top=(o?o.offsetTop+o.offsetHeight+8:0)+'px';r.style.overflow='auto';const pp=c.querySelector('.point');if(pp&&!r.hasAttribute('aria-hidden'))pp.style.justifyContent='flex-start'}
   else{r.style.top=(o?o.offsetTop+o.offsetHeight+8:'')+'px';r.style.overflow='auto';if(n)r.style.bottom=(c.clientHeight-n.offsetTop+6)+'px'}}
 const _render=render;render=function(){_render();foot();fit();placeReveal()};
 addEventListener('resize',placeReveal);
