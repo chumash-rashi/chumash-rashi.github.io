@@ -4,6 +4,9 @@ Version number is shown in the footer of every page (`APP_VERSION` in each Rashi
 
 Feedback: the footer "Feedback" link opens a pre-filled GitHub issue at https://github.com/yishairasowsky/chumash_rashi/issues (needs a free GitHub account).
 
+## 1.2.0 — 2026-11-15
+- After answering, a citation line shows the chapter and verse, the dibbur hamaschil, and a link to that Rashi on Sefaria.
+
 ## 1.1.1 — 2026-11-15
 - After answering, the screen now shows only the green/red marking on the choices and the 'Rashi's language' button; the separate explanation box was removed.
 
