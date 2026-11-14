@@ -80,7 +80,7 @@ select{background:var(--surface);border:1px solid var(--line);border-radius:8px;
 .row p{margin:0;font-family:var(--f-body);font-size:16px;line-height:1.45;direction:rtl}
 @media (max-width:460px){.row{grid-template-columns:1fr}.pasuk{font-size:22px}}
 details{font-size:14px}
-summary{cursor:pointer;color:var(--muted);font-size:14px}
+summary{cursor:pointer;color:var(--accent);font-size:22px;font-weight:600;display:inline-block;padding:8px 18px;border:1.5px solid var(--accent);border-radius:10px}
 .full{margin-top:10px;display:flex;flex-direction:column;gap:10px;background:var(--bg);border-radius:10px;padding:12px}
 .full .he{font-family:var(--f-rashi);font-size:14px;line-height:1.6;direction:rtl;text-align:right}
 .full .he b{font-weight:600}
@@ -132,7 +132,7 @@ header .top,.tools,.ref,.dh{display:none}
 .card>.nav{grid-column:1/-1;grid-row:3}
 .reveal{position:absolute;inset:auto 0 0 0;z-index:3;max-height:none;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;gap:6px;box-shadow:0 -8px 24px rgba(0,0,0,.3)}
 .reveal[aria-hidden]{box-shadow:none;border-color:transparent}
-.row p{font-size:27px;line-height:1.4}
+.row p{font-size:30px;line-height:1.4}
 .verdict{font-size:30px;font-weight:700}
 .row .t{font-size:20px}
 .q{font-size:calc(var(--s,1)*21px)}
@@ -200,9 +200,7 @@ function pointHTML(x,j){const v=picked(x,j);const ord=order(x.id+'#'+j);const mu
     <div class="opts">${ord.map((o,k)=>{let c='';if(v!==undefined){c=o===0?'נכון':(o===v?'wrong':'dim')}
       return `<button class="opt ${c}" type="button" data-j="${j}" data-o="${o}" ${v!==undefined?'disabled':''}><span class="k">${k+1}</span><span>${heWrap(pt.options[o])}</span></button>`}).join('')}</div>
     ${(v!==undefined||j===nDone(x))?`<div class="reveal"${v===undefined?' style="visibility:hidden" aria-hidden="true"':''}>
-      <div class="verdict ${v===0?'ok':'no'}">${v===0?'נכון.':'לא בדיוק.'}</div>
-      ${pt.kasha?`<div class="row"><span class="t">מה מקשה רש״י</span><p>${heWrap(pt.kasha)}</p></div>`:''}
-      <div class="row"><span class="t">רש״י אומר</span><p>${heWrap(pt.answer)}</p></div></div>`:''}
+      <div class="row"><p>${heWrap(pt.answer)}</p></div></div>`:''}
   </div>`}
 
 function render(){
@@ -265,11 +263,11 @@ function fit(){const c=document.querySelector('.card');if(!c)return;const r=docu
     bs(v=>r.style.setProperty('--sp',v),()=>p.scrollHeight>p.clientHeight+1,.5,3.2);
     const kids=[...pt.children].filter(e=>e!==rv),gap=parseFloat(getComputedStyle(pt).rowGap)||0;
     const need=()=>kids.reduce((t,e)=>t+Math.max(e.offsetHeight,e.scrollHeight),0)+gap*(kids.length-1);
-    bs(v=>r.style.setProperty('--s',v),()=>need()>pt.clientHeight*(shown?.58:1)+1,.5,2.4)}
+    bs(v=>r.style.setProperty('--s',v),()=>need()>pt.clientHeight*(shown?.7:1)+1,.5,2.4)}
   else bs(v=>r.style.setProperty('--s',v),()=>c.scrollHeight>c.clientHeight+1,.6,6);
   if(rv)rv.style.display=''}
 function placeReveal(){const c=document.querySelector('.card'),r=c&&c.querySelector('.reveal'),n=c&&c.querySelector('.nav'),o=c&&c.querySelector('.opts');if(!r)return;
-  if(matchMedia('(min-width:900px)').matches){const pp=c.querySelector('.point');if(pp&&!r.hasAttribute('aria-hidden'))pp.style.justifyContent='flex-start';r.style.bottom='0';r.style.top=(o?o.offsetTop+Math.max(o.offsetHeight,o.scrollHeight)+8:0)+'px';r.style.overflow='auto'}
+  if(matchMedia('(min-width:900px)').matches){const pp=c.querySelector('.point');if(pp&&!r.hasAttribute('aria-hidden'))pp.style.justifyContent='flex-start';r.style.bottom='auto';r.style.top=(o?o.offsetTop+Math.max(o.offsetHeight,o.scrollHeight)+8:0)+'px';r.style.overflow='auto'}
   else{r.style.top=(o?o.offsetTop+o.offsetHeight+8:'')+'px';r.style.overflow='auto';if(n)r.style.bottom=(c.clientHeight-n.offsetTop+6)+'px'}}
 const _render=render;render=function(){_render();foot();fit();placeReveal()};
 const refit=()=>{fit();placeReveal()};
