@@ -4,6 +4,9 @@ Version number is shown in the footer of every page (`APP_VERSION` in each Rashi
 
 Feedback: the footer "Feedback" link opens a pre-filled GitHub issue at https://github.com/yishairasowsky/chumash_rashi/issues (needs a free GitHub account).
 
+## 1.0.1 — 2026-11-15
+- Toldot: words quoted from the pasuk in questions and choices now take their niqqud directly from the pasuk (e.g. יָצֹא יָצָא), fixing wrong vowels.
+
 ## 1.0.0 — 2026-11-15
 - Toldot: all quiz questions and answer choices now have full niqqud.
 - Toldot: quiz written directly in natural Hebrew.
