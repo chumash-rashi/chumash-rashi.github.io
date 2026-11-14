@@ -4,6 +4,9 @@ Version number is shown in the footer of every page (`APP_VERSION` in each Rashi
 
 Feedback: the footer "Feedback" link opens a pre-filled GitHub issue at https://github.com/yishairasowsky/chumash_rashi/issues (needs a free GitHub account).
 
+## 1.1.1 — 2026-11-15
+- After answering, the screen now shows only the green/red marking on the choices and the 'Rashi's language' button; the separate explanation box was removed.
+
 ## 1.1.0 — 2026-11-15
 - New: Parshas Vayetze (Bereishis 28:10 – 32:3), 197 Rashis with a Hebrew quiz and niqqud on all questions and choices. Text from Sefaria (public export).
 - Fixed: Lech Lecha, Toldot and Chayei Sarah all saved progress under the same browser key and overwrote each other. Each parsha now has its own key (Toldot and Chayei Sarah progress starts fresh).

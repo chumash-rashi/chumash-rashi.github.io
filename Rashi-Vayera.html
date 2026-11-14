@@ -200,8 +200,6 @@ function pointHTML(x,j){const v=picked(x,j);const ord=order(x.id+'#'+j);const mu
     <p class="q">${heWrap(pt.q)}</p>
     <div class="opts">${ord.map((o,k)=>{let c='';if(v!==undefined){c=o===0?'נכון':(o===v?'wrong':'dim')}
       return `<button class="opt ${c}" type="button" data-j="${j}" data-o="${o}" ${v!==undefined?'disabled':''}><span class="k">${k+1}</span><span>${heWrap(pt.options[o])}</span></button>`}).join('')}</div>
-    ${(v!==undefined||j===nDone(x))?`<div class="reveal"${v===undefined?' style="visibility:hidden" aria-hidden="true"':''}>
-      <div class="row"><p>${heWrap(pt.answer)}</p></div></div>`:''}
   </div>`}
 
 function render(){
@@ -257,7 +255,7 @@ function foot0(){const h=document.querySelector('.hint');const x=DATA[st.i];
   if(!x){h.textContent=c;return}
   const on=DATA.filter(y=>y.ch===x.ch&&y.v===x.v).length;
   h.innerHTML='<span>בראשית '+x.ch+':'+x.v+' · '+gem(x.ch)+':'+gem(x.v)+'</span><span>רש״י '+x.n+' מתוך '+on+' על פסוק זה · #'+(st.i+1)+'</span><span>'+esc(c)+'</span><span>מקשים: 1-3 לתשובה · Enter להבא · ← / → לניווט</span>'}
-const APP_VERSION='1.1.0';
+const APP_VERSION='1.1.1';
 function foot(){foot0();const h=document.querySelector('.hint');if(!h)return;const x=DATA[st.i];
   const body='Version: v'+APP_VERSION+'\nPage: '+location.pathname.split('/').pop()+(x?'\nRashi: '+x.id+' (#'+(st.i+1)+')':'')+'\n\nWhat happened / what would you like changed?\n';
   h.insertAdjacentHTML('beforeend','<span>v'+APP_VERSION+' · <a class="fb" target="_blank" rel="noopener" href="https://github.com/yishairasowsky/chumash_rashi/issues/new?title=Feedback&body='+encodeURIComponent(body)+'">משוב / Feedback</a></span>')}
