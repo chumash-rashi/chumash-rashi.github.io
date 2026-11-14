@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lech Lecha Rashi</title>
-<style>[hidden]{display:none!important}img{max-width:100%}</style>
+<style>[hidden]{display:none!important}img{max-width:100%}.hint a.fb{color:var(--accent);font-weight:600;font-size:1.15em}
+</style>
 </head>
 <body dir="rtl">
 
@@ -170,7 +171,7 @@ function gem(n){const v=[400,300,200,100,90,80,70,60,50,40,30,20,10,9,8,7,6,5,4,
 function hash(s){let h=2166136261;for(const c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
 function order(id){const a=[0,1,2];let h=hash(id);for(let k=2;k>0;k--){const j=h%(k+1);h=Math.floor(h/7)+13;[a[k],a[j]]=[a[j],a[k]]}return a}
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
-function heWrap(s){s=String(s).replace(/[“”„]/g,'"').replace(/(^|[\s(])״/g,'$1"').replace(/״(?=$|[\s.,;:?!)])/g,'"').replace(/(^|[^א-ת])(ה|וגו|ית|וכו|וגומ)'/g,'$1$2׳');return esc(s).replace(/([֐-׿](?:[֐-׿״׳\- ]*[֐-׿״׳])?)/g,'<span lang="he" dir="rtl">$1</span>')}
+function heWrap(s){s=String(s).replace(/[“”„]/g,'"').replace(/(^|[\s(])״/g,'$1"').replace(/״(?=$|[\s.,;:?!)])/g,'"').replace(/(^|[\s(])((?:[א-ת][֑-ׇ]*){1,2})״(?=(?:[֑-ׇ]*[א-ת]){3})/g,'$1$2"').replace(/(^|[^א-ת])(ה|וגו|ית|וכו|וגומ)'/g,'$1$2׳');return esc(s).replace(/([֐-׿](?:[֐-׿״׳\- ]*[֐-׿״׳])?)/g,'<span lang="he" dir="rtl">$1</span>')}
 const $=id=>document.getElementById(id);
 
 // jump menu: one option per posuk that has Rashi
@@ -251,11 +252,15 @@ document.addEventListener('keydown',e=>{if(e.target.tagName==='SELECT'||e.metaKe
   else if(e.key==='Enter'||e.key==='ArrowRight'){const n=$('next');if(n&&!n.disabled&&document.activeElement.tagName!=='SUMMARY'){e.preventDefault();n.click()}}
   else if(e.key==='ArrowLeft'){const b=$('back');if(b&&!b.disabled)b.click()}});
 
-function foot(){const h=document.querySelector('.hint');const x=DATA[st.i];
+function foot0(){const h=document.querySelector('.hint');const x=DATA[st.i];
   const c=$('count').textContent;
   if(!x){h.textContent=c;return}
   const on=DATA.filter(y=>y.ch===x.ch&&y.v===x.v).length;
   h.innerHTML='<span>בראשית '+x.ch+':'+x.v+' · '+gem(x.ch)+':'+gem(x.v)+'</span><span>רש״י '+x.n+' מתוך '+on+' על פסוק זה · #'+(st.i+1)+'</span><span>'+esc(c)+'</span><span>מקשים: 1-3 לתשובה · Enter להבא · ← / → לניווט</span>'}
+const APP_VERSION='1.0.0';
+function foot(){foot0();const h=document.querySelector('.hint');if(!h)return;const x=DATA[st.i];
+  const body='Version: v'+APP_VERSION+'\nPage: '+location.pathname.split('/').pop()+(x?'\nRashi: '+x.id+' (#'+(st.i+1)+')':'')+'\n\nWhat happened / what would you like changed?\n';
+  h.insertAdjacentHTML('beforeend','<span>v'+APP_VERSION+' · <a class="fb" target="_blank" rel="noopener" href="https://github.com/yishairasowsky/chumash_rashi/issues/new?title=Feedback&body='+encodeURIComponent(body)+'">משוב / Feedback</a></span>')}
 function fit(){const c=document.querySelector('.card');if(!c)return;const r=document.documentElement;
   const rv=c.querySelector('.reveal');const shown=rv&&!rv.hasAttribute('aria-hidden');if(rv){if(shown)rv.style.position='static';else rv.style.display='none'}
   const bs=(set,over,lo,hi)=>{for(let i=0;i<10;i++){const m=(lo+hi)/2;set(m);if(over())hi=m;else lo=m}set(lo)};
