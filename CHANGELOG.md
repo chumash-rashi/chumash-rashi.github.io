@@ -4,6 +4,11 @@ Version number is shown in the footer of every page (`APP_VERSION` in each Rashi
 
 Feedback: the footer "Feedback" link opens a pre-filled GitHub issue at https://github.com/yishairasowsky/chumash_rashi/issues (needs a free GitHub account).
 
+## 1.1.0 — 2026-11-15
+- New: Parshas Vayetze (Bereishis 28:10 – 32:3), 197 Rashis with a Hebrew quiz and niqqud on all questions and choices. Text from Sefaria (public export).
+- Fixed: Lech Lecha, Toldot and Chayei Sarah all saved progress under the same browser key and overwrote each other. Each parsha now has its own key (Toldot and Chayei Sarah progress starts fresh).
+- New scripts: build_parsha_data.py (source data from the Sefaria export) and build_parsha_page.py (assembles a page from the Toldot template).
+
 ## 1.0.1 — 2026-11-15
 - Toldot: words quoted from the pasuk in questions and choices now take their niqqud directly from the pasuk (e.g. יָצֹא יָצָא), fixing wrong vowels.
 
