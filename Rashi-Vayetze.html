@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Vayetze Rashi</title>
 <style>[hidden]{display:none!important}img{max-width:100%}.hint a.fb{color:var(--accent);font-weight:600;font-size:1.15em}
-.cite{direction:rtl;font-size:max(14px,calc(var(--s,1)*10px));color:var(--muted);line-height:1.4}
+.cite{direction:rtl;font-size:14px;margin-bottom:-4px;color:var(--muted);line-height:1.4}
 .cite b{color:var(--ink);font-weight:600}
 .cite a{color:var(--accent);font-weight:600;text-decoration:none;white-space:nowrap}
 .cite a:hover{text-decoration:underline}
-.quote{direction:rtl;text-align:right;font-family:var(--f-rashi);font-size:max(14px,calc(var(--s,1)*11px));line-height:1.5;background:var(--bg);border-radius:10px;padding:8px 12px;max-height:30vh;overflow:auto}
+.quote{direction:rtl;text-align:right;font-family:var(--f-rashi);font-size:max(18px,calc(var(--s,1)*15px));line-height:1.55;background:var(--bg);border-radius:10px;padding:8px 12px;max-height:30vh;overflow:auto}
 </style>
 </head>
 <body dir="rtl">
@@ -256,7 +256,7 @@ function foot0(){const h=document.querySelector('.hint');const x=DATA[st.i];
   if(!x){h.textContent=c;return}
   const on=DATA.filter(y=>y.ch===x.ch&&y.v===x.v).length;
   h.innerHTML='<span>בראשית '+x.ch+':'+x.v+' · '+gem(x.ch)+':'+gem(x.v)+'</span><span>רש״י '+x.n+' מתוך '+on+' על פסוק זה · #'+(st.i+1)+'</span><span>'+esc(c)+'</span><span>מקשים: 1-3 לתשובה · Enter להבא · ← / → לניווט</span>'}
-const APP_VERSION='1.3.4';
+const APP_VERSION='1.3.5';
 function foot(){foot0();const h=document.querySelector('.hint');if(!h)return;const x=DATA[st.i];
   const body='Version: v'+APP_VERSION+'\nPage: '+location.pathname.split('/').pop()+(x?'\nRashi: '+x.id+' (#'+(st.i+1)+')':'')+'\n\nWhat happened / what would you like changed?\n';
   h.insertAdjacentHTML('beforeend','<span>v'+APP_VERSION+' · <a class="fb" target="_blank" rel="noopener" href="https://github.com/yishairasowsky/chumash_rashi/issues/new?title=Feedback&body='+encodeURIComponent(body)+'">משוב / Feedback</a></span>')}
