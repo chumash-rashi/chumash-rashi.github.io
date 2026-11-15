@@ -4,6 +4,9 @@ Version number is shown in the footer of every page (`APP_VERSION` in each Rashi
 
 Feedback: the footer "Feedback" link opens a pre-filled GitHub issue at https://github.com/yishairasowsky/chumash_rashi/issues (needs a free GitHub account).
 
+## 1.4.8
+- Fix: quoted words inside ״ ״ quotes now correctly take the pasuk's vowels (was mis-pairing quotes after רש״י).
+
 ## 1.4.7
 - Quoted pasuk words in questions/choices now always match the pasuk's vowels, including words inside gershayim quotes (e.g. וְתוֹרֹתָי).
 
