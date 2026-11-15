@@ -4,6 +4,9 @@ Version number is shown in the footer of every page (`APP_VERSION` in each Rashi
 
 Feedback: the footer "Feedback" link opens a pre-filled GitHub issue at https://github.com/yishairasowsky/chumash_rashi/issues (needs a free GitHub account).
 
+## 1.4.5
+- After answering: choices stay large and Rashi's text gets a fixed, larger box that scrolls only if needed.
+
 ## 1.4.4
 - After answering, the answer options keep their full size; long Rashi text scrolls inside its box.
 - Highlight in Rashi's text now covers every relevant phrase (up to 3), not just one.
