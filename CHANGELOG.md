@@ -4,6 +4,9 @@ Version number is shown in the footer of every page (`APP_VERSION` in each Rashi
 
 Feedback: the footer "Feedback" link opens a pre-filled GitHub issue at https://github.com/yishairasowsky/chumash_rashi/issues (needs a free GitHub account).
 
+## 1.4.3
+- Pasuk now uses Frank Ruhl Libre, which stacks etnachta under a vowel correctly; all cantillation marks restored.
+
 ## 1.4.2
 - Pasuk: restored the cantillation marks that had been removed from many words; only etnachta/yetiv that collide with a below-letter vowel are omitted.
 
