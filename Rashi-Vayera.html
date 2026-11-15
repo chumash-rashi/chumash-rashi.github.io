@@ -217,7 +217,8 @@ function rashiHTML(x,pt){
     if(best>=2){for(let k=0;k<best;k++)cls[i+k]+=' qw';i+=best-1}}
   if(pt&&pt.kp){const kw=String(pt.kp).split(/\s+/).map(nz).filter(Boolean);
     if(kw.length)for(let i=0;i+kw.length<=n.length;i++){if(kw.every((w,k)=>n[i+k]===w)){for(let k=0;k<kw.length;k++)cls[i+k]+=' kp';break}}}
-  return toks.map((t,i)=>cls[i]?`<span class="${cls[i].trim()}">${esc(t)}</span>`:esc(t)).join(' ')}
+  const out=[];for(let i=0;i<toks.length;){const c=cls[i].trim();if(!c){out.push(esc(toks[i]));i++;continue}let j=i;while(j<toks.length&&cls[j].trim()===c)j++;out.push(`<span class="${c}">${toks.slice(i,j).map(esc).join(' ')}</span>`);i=j}
+  return out.join(' ')}
 function pointHTML(x,j){const v=picked(x,j);const ord=order(x.id+'#'+j);const multi=x.points.length>1;const pt=x.points[j];
   return `<div class="point" id="pt${j}">
     ${multi?`<div class="pnum">נקודה ${j+1} מתוך ${x.points.length}</div>`:''}
@@ -275,7 +276,7 @@ function foot0(){const h=document.querySelector('.hint');const x=DATA[st.i];
   if(!x){h.textContent=c;return}
   const on=DATA.filter(y=>y.ch===x.ch&&y.v===x.v).length;
   h.innerHTML='<span>בראשית '+x.ch+':'+x.v+' · '+gem(x.ch)+':'+gem(x.v)+'</span><span>רש״י '+x.n+' מתוך '+on+' על פסוק זה · #'+(st.i+1)+'</span><span>'+esc(c)+'</span><span>מקשים: 1-3 לתשובה · Enter להבא · ← / → לניווט</span>'}
-const APP_VERSION='1.4.0';
+const APP_VERSION='1.4.1';
 function foot(){foot0();const h=document.querySelector('.hint');if(!h)return;const x=DATA[st.i];
   const body='Version: v'+APP_VERSION+'\nPage: '+location.pathname.split('/').pop()+(x?'\nRashi: '+x.id+' (#'+(st.i+1)+')':'')+'\n\nWhat happened / what would you like changed?\n';
   h.insertAdjacentHTML('beforeend','<span>v'+APP_VERSION+' · <a class="fb" target="_blank" rel="noopener" href="https://github.com/yishairasowsky/chumash_rashi/issues/new?title=Feedback&body='+encodeURIComponent(body)+'">משוב / Feedback</a></span>')}
