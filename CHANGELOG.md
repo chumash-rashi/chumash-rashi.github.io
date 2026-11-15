@@ -4,6 +4,9 @@ Version number is shown in the footer of every page (`APP_VERSION` in each Rashi
 
 Feedback: the footer "Feedback" link opens a pre-filled GitHub issue at https://github.com/yishairasowsky/chumash_rashi/issues (needs a free GitHub account).
 
+## 1.4.7
+- Quoted pasuk words in questions/choices now always match the pasuk's vowels, including words inside gershayim quotes (e.g. וְתוֹרֹתָי).
+
 ## 1.4.6
 - Rashi's box now reserves a share of the window height instead of a fixed size, so the choices stay large on shorter windows.
 
