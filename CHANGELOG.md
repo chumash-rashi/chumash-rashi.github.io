@@ -4,6 +4,9 @@ Version number is shown in the footer of every page (`APP_VERSION` in each Rashi
 
 Feedback: the footer "Feedback" link opens a pre-filled GitHub issue at https://github.com/yishairasowsky/chumash_rashi/issues (needs a free GitHub account).
 
+## 1.3.1
+- Pasuk: removed cantillation marks that sat under a vowel and overlapped it.
+
 ## 1.3.0
 - After answering, Rashi's words are shown directly under the citation (with the Sefaria link); the show/hide button is gone.
 
