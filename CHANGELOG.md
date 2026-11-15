@@ -4,6 +4,11 @@ Version number is shown in the footer of every page (`APP_VERSION` in each Rashi
 
 Feedback: the footer "Feedback" link opens a pre-filled GitHub issue at https://github.com/yishairasowsky/chumash_rashi/issues (needs a free GitHub account).
 
+## 1.5.0
+- Lech Lecha and Vayera rebuilt to the same standard as Toldot and Vayetze: new Hebrew questions with full niqqud, Hebrew explanation of each Rashi, highlighted key phrases, clean Rashi text (old garbled strings removed). Progress for these two parshiyot restarts because the questions changed.
+- Chayei Sarah: Hebrew explanation of each Rashi (the "Rashi's language" button previously showed English).
+- Quoted words in questions now take the pasuk's vowels even when the quote drops a prefix letter (e.g. בַּשָּׁנָה quoted as "שָׁנָה") or follows a prefix like בְּ.
+
 ## 1.4.8
 - Fix: quoted words inside ״ ״ quotes now correctly take the pasuk's vowels (was mis-pairing quotes after רש״י).
 

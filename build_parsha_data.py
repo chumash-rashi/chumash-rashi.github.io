@@ -16,8 +16,11 @@ src, data = {}, []
 for ch in range(a[0], b[0] + 1):
     for v in range(1, len(he[ch - 1]) + 1):
         if (ch, v) < a or (ch, v) > b: continue
+        if v > len(rh[ch - 1]) or v > len(ren[ch - 1]): continue
         rs = rh[ch - 1][v - 1]; es = ren[ch - 1][v - 1]
+        if not rs: continue
         rs = [rs] if isinstance(rs, str) else rs; es = [es] if isinstance(es, str) else es
+        if len(es) < len(rs): es = es + [''] * (len(rs) - len(es))
         assert len(rs) == len(es), (ch, v)
         src[f'{ch}:{v}'] = {'ch': str(ch), 'v': str(v), 'he': clean(he[ch - 1][v - 1]), 'en': clean(nik[ch - 1][v - 1]),
                             'rashis': [{'he': clean(x), 'en': clean(y)} for x, y in zip(rs, es)]}

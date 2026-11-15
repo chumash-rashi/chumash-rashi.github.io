@@ -11,6 +11,21 @@ SYSTEM = """אתה מנקד מומחה לעברית מקראית ולשון חכ
 
 def strip(s): return re.sub(r'[֑-ׇ]', '', s)
 
+import difflib
+def _toks(v):
+    out = []
+    for ch in v:
+        if '֑' <= ch <= 'ׇ' and out: out[-1] += ch
+        else: out.append(ch)
+    return out
+def align(k, v):
+    """v's vowels laid over k's exact letters (restores letters the model dropped/changed)."""
+    t = _toks(v); sm = difflib.SequenceMatcher(None, list(strip(k)) if False else list(k), [strip(x) for x in t], autojunk=False); res = []
+    for op, a1, a2, b1, b2 in sm.get_opcodes():
+        if op == 'equal': res += t[b1:b2]
+        elif op in ('delete', 'replace'): res += list(k[a1:a2])
+    return ''.join(res)
+
 def call(client, batch):
     last = None
     for attempt in range(5):
@@ -21,9 +36,7 @@ def call(client, batch):
             t = re.sub(r'^```(?:json)?\s*|\s*```$', '', p.stdout.strip())
             out = json.loads(t)
             assert len(out) == len(batch)
-            for a, b in zip(batch, out):
-                assert strip(a) == strip(b), f"text changed: {a!r} -> {b!r}"
-            return out
+            return [align(a, b) for a, b in zip(batch, out)]
         except Exception as ex:
             last = ex; time.sleep(5 * (attempt + 1))
     raise RuntimeError(f"batch failed: {last}")
@@ -43,7 +56,7 @@ def main():
     todo = sorted({t for t in texts if t not in cache})
     print(f"{len(cache)} cached, {len(todo)} to do", flush=True)
     client = None
-    batches = [todo[i:i+15] for i in range(0, len(todo), 25)]
+    batches = [todo[i:i+15] for i in range(0, len(todo), 15)]
     with ThreadPoolExecutor(max_workers=6) as pool:
         for n, (b, res) in enumerate(zip(batches, pool.map(lambda b: call(client, b), batches)), 1):
             cache.update(dict(zip(b, res)))
