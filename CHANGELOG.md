@@ -4,6 +4,11 @@ Version number is shown in the footer of every page (`APP_VERSION` in each Rashi
 
 Feedback: the footer "Feedback" link opens a pre-filled GitHub issue at https://github.com/yishairasowsky/chumash_rashi/issues (needs a free GitHub account).
 
+## 1.4.0
+- Citation now sits inside the Rashi box (more room for Rashi's words, larger font).
+- In Rashi's text: dibbur hamaschil in bold, words quoted from the pasuk underlined, and the key phrase that supports the correct answer highlighted.
+- Pasuk: a bit more letter/line spacing so trope marks are less crowded against vowels.
+
 ## 1.3.5
 - Citation line smaller; Rashi's quoted text larger.
 
