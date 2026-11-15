@@ -4,6 +4,9 @@ Version number is shown in the footer of every page (`APP_VERSION` in each Rashi
 
 Feedback: the footer "Feedback" link opens a pre-filled GitHub issue at https://github.com/yishairasowsky/chumash_rashi/issues (needs a free GitHub account).
 
+## 1.3.4
+- Fix: quoted pasuk words lost their vowels in 1.3.2-1.3.3; restored.
+
 ## 1.3.3
 - Pasuk: also remove yetiv mark that overlapped vowels.
 
