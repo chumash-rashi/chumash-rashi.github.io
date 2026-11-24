@@ -4,6 +4,9 @@ Version number is shown in the footer of every page (`APP_VERSION` in each Rashi
 
 Feedback: the footer "Feedback" link opens a pre-filled GitHub issue at https://github.com/yishairasowsky/chumash_rashi/issues (needs a free GitHub account).
 
+## 1.8.0
+- New parsha: Vayeshev (Bereishis 37:1 – 40:23), same format (Hebrew with niqqud, English version, printable test).
+
 ## 1.7.0
 - New parsha: Vayishlach (Bereishis 32:4 – 36:43), 168 Rashis, Hebrew with full niqqud plus English version and printable test.
 
