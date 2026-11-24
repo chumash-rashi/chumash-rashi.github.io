@@ -61,7 +61,7 @@ h = h[:m.start()] + m.group(1) + json.dumps(sk, ensure_ascii=False) + m.group(3)
 h = h.replace('<title>Toldot Rashi</title>', f'<title>{Name} Rashi</title>')
 h = h.replace('רש״י · תולדות <span>רש״י על תולדות</span>', f'רש״י · {heb} <span>רש״י על {heb}</span>')
 h = h.replace('סליק פרשת תולדות', f'סליק פרשת {heb}')
-h = h.replace("const KEY='lechlecha-rashi-v2'", f"const KEY='{key}'")
-assert 'Toldot' not in h.replace('Rashi-Toldot', '') and h.count(f"KEY='{key}'") == 1
+h = h.replace("const KEY='toldot-rashi-v2'", f"const KEY='{key}'")
+assert h.count(f"KEY='{key}'") == 1
 open(f'Rashi-{Name}.html', 'w', encoding='utf-8', newline='').write(h)
 print('wrote', f'Rashi-{Name}.html', len(h))

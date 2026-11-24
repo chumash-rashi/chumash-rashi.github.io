@@ -53,9 +53,9 @@ def transform(html: str, parsha_he: str) -> str:
 
     # Smaller pasuk
     html = html.replace('.pasuk{font-family:var(--f-heb);font-size:24px;line-height:1.75;direction:rtl;text-align:right}',
-                        '.pasuk{font-family:var(--f-heb);font-size:17px;line-height:1.6;direction:rtl;text-align:right}')
+                        '.pasuk{font-family:var(--f-heb);font-size:20px;line-height:1.6;direction:rtl;text-align:right}')
     html = html.replace('.pasuk{font-family:var(--f-heb);font-size:22px;',
-                        '.pasuk{font-family:var(--f-heb);font-size:17px;')
+                        '.pasuk{font-family:var(--f-heb);font-size:20px;')
 
     # Hide English verse (pasuk-en) — going all-Hebrew
     html = re.sub(

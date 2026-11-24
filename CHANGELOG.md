@@ -4,6 +4,13 @@ Version number is shown in the footer of every page (`APP_VERSION` in each Rashi
 
 Feedback: the footer "Feedback" link opens a pre-filled GitHub issue at https://github.com/yishairasowsky/chumash_rashi/issues (needs a free GitHub account).
 
+## 1.7.0
+- New parsha: Vayishlach (Bereishis 32:4 – 36:43), 168 Rashis, Hebrew with full niqqud plus English version and printable test.
+
+## 1.6.1
+- Printable Hebrew test: full niqqud everywhere, including the Rashi headings (dibbur hamaschil), page title, labels (name/date/score), and the answer-key heading. Requested for a young reader.
+- Footer (version, feedback, language, print) about 30% larger.
+
 ## 1.6.0
 - English version of every parsha: footer button switches between עברית and English (remembered). English questions, choices, plain-English explanation of each Rashi, English pasuk and Rashi (Metsudah via Sefaria, CC-BY); layout flips to left-to-right.
 - Printable test with answer key: footer "Print test + answer key" (whole parsha or one chapter, in the current language). Questions with lettered choices first, answer key (letter, correct answer, Rashi reference, explanation) on the last pages. Suggested by Yaakov.
