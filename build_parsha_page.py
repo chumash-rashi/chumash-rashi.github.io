@@ -52,7 +52,7 @@ def vow(s, words):
 for x in sk:
     q = quiz[x['id']]; w = pwords(x)
     x['rashi_en'] = q['simple']
-    x['points'] = [{'q': vow(p['q'], w), 'options': [vow(o, w) for o in p['options']], 'kasha': p.get('kasha', ''), 'answer': p['answer']} for p in q['points']]
+    x['points'] = [{'q': vow(p['q'], w), 'options': [vow(o, w) for o in p['options']], 'kasha': p.get('kasha', ''), 'answer': p['answer'], 'kp': p.get('kp', [])} for p in q['points']]
 print('entries', len(sk), 'strings without niqqud', miss)
 
 h = open('Rashi-Toldot.html', encoding='utf-8', newline='').read()
