@@ -4,6 +4,9 @@ Version number is shown in the footer of every page (`APP_VERSION` in each Rashi
 
 Feedback: the footer "Feedback" link opens a pre-filled GitHub issue at https://github.com/yishairasowsky/chumash_rashi/issues (needs a free GitHub account).
 
+## 1.8.3
+- Pasuk font changed to Taamey Frank CLM (Culmus project; GPL with font-embedding exception), hosted in `fonts/`. Cardo remains as fallback. Chosen after feedback from Yossi Zahn that he preferred Taamey Frank CLM or SBL Hebrew.
+
 ## 1.8.2
 - Pasuk font changed to Cardo (a scholarly font with proper cantillation-mark placement); falls back to Frank Ruhl Libre. Applies to the on-screen pasuk and the printed test. Feedback from Yossi Zahn.
 
